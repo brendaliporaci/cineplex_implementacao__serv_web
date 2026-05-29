@@ -53,3 +53,36 @@ container.addEventListener('click', (e) => {
 
 // Carrega os assentos ao abrir a página
 carregarAssentos();
+
+// Seleciona o botão de reserva
+const botaoReservar = document.getElementById('reservar');
+
+// Envia os assentos selecionados para a API
+botaoReservar.addEventListener('click', async () => {
+  const selecionados = document.querySelectorAll('.seat.selected');
+
+  const assentos = Array.from(selecionados).map(seat =>
+    seat.getAttribute('data-codigo')
+  );
+
+  if (assentos.length === 0) {
+    alert('Selecione pelo menos um assento');
+    return;
+  }
+
+  const resposta = await fetch('http://localhost:5000/api/reservas', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      assentos: assentos
+    })
+  });
+
+  const resultado = await resposta.json();
+
+  alert(resultado.mensagem || resultado.erro);
+
+  carregarAssentos();
+});
