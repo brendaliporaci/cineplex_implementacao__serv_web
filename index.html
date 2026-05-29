@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinema Seat Selector</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Global reset and box-sizing */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      position: relative;
+    }
+
+    /* Background Image */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('Assets/krists-luhaers-AtPWnYNDJnM-unsplash.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: blur(8px); /* Blurred effect */
+      z-index: -1; /* Ensures it stays behind the content */
+    }
+
+    /* Container styling */
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: rgba(0, 0, 0, 0.9); /* Darker transparency for background visibility */
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      color: #f39c12;
+      margin-bottom: 20px;
+    }
+
+    .screen {
+      background-color: #fff;
+      height: 50px;
+      width: 100%;
+      text-align: center;
+      line-height: 50px;
+      font-size: 24px;
+      font-weight: 500; /* Changed to medium font weight */
+      color: #000;
+      margin: 20px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .seat-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .seat {
+      background-color: #4CAF50;
+      height: 40px;
+      width: 40px;
+      margin: 5px;
+      text-align: center;
+      line-height: 40px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .seat.selected {
+      background-color: #f39c12;
+    }
+
+    .seat.unavailable {
+      background-color: #e74c3c;
+      cursor: not-allowed;
+    }
+
+    .seat:hover:not(.unavailable):not(.selected) {
+      background-color: #666;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .legend-item div {
+      height: 20px;
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .static-available {
+      background-color: #4CAF50;
+    }
+
+    .static-selected {
+      background-color: #f39c12;
+    }
+
+    .static-unavailable {
+      background-color: #e74c3c;
+    }
+
+    .summary {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #ffcc00;
+      border: none;
+      color: #000;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .btn:hover {
+      background-color: #e6b800;
+    }
+
+    /* Footer styling */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.8); /* Transparency for footer */
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+    }
+
+    .footer .legal, .footer .designed-by {
+      font-size: 12px;
+    }
+
+    .footer .designed-by {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Image -->
+  <div class="background"></div>
+
+  <!-- Main Content Container -->
+  <div class="container">
+    <h1>Cineplex Movies</h1>
+
+    <!-- Screen Section -->
+    <div class="screen">
+      <span>SCREEN</span>
+    </div>
+    
+    <!-- Seat Layout -->
+    <div class="seat-grid">
+      <!-- Front row (10 seats) -->
+      <div class="row">
+        <div class="seat" data-price="800">A1</div>
+        <div class="seat" data-price="800">A2</div>
+        <div class="seat" data-price="800">A3</div>
+        <div class="seat" data-price="800">A4</div>
+        <div class="seat" data-price="800">A5</div>
+        <div class="seat" data-price="800">A6</div>
+        <div class="seat" data-price="800">A7</div>
+        <div class="seat" data-price="800">A8</div>
+        <div class="seat" data-price="800">A9</div>
+        <div class="seat" data-price="800">A10</div>
+      </div>
+
+      <!-- Middle section (12 seats per row) -->
+      <div class="row">
+        <div class="seat" data-price="1200">B1</div>
+        <div class="seat" data-price="1200">B2</div>
+        <div class="seat" data-price="1200">B3</div>
+        <div class="seat" data-price="1200">B4</div>
+        <div class="seat" data-price="1200">B5</div>
+        <div class="seat" data-price="1200">B6</div>
+        <div class="seat" data-price="1200">B7</div>
+        <div class="seat" data-price="1200">B8</div>
+        <div class="seat" data-price="1200">B9</div>
+        <div class="seat" data-price="1200">B10</div>
+        <div class="seat" data-price="1200">B11</div>
+        <div class="seat" data-price="1200">B12</div>
+      </div>
+
+      <!-- Another row of 12 seats -->
+      <div class="row">
+        <div class="seat" data-price="1200">C1</div>
+        <div class="seat" data-price="1200">C2</div>
+        <div class="seat" data-price="1200">C3</div>
+        <div class="seat" data-price="1200">C4</div>
+        <div class="seat" data-price="1200">C5</div>
+        <div class="seat" data-price="1200">C6</div>
+        <div class="seat" data-price="1200">C7</div>
+        <div class="seat" data-price="1200">C8</div>
+        <div class="seat" data-price="1200">C9</div>
+        <div class="seat" data-price="1200">C10</div>
+        <div class="seat" data-price="1200">C11</div>
+        <div class="seat" data-price="1200">C12</div>
+      </div>
+
+      <!-- Back rows (10 seats) -->
+      <div class="row">
+        <div class="seat" data-price="1500">D1</div>
+        <div class="seat" data-price="1500">D2</div>
+        <div class="seat" data-price="1500">D3</div>
+        <div class="seat" data-price="1500">D4</div>
+        <div class="seat" data-price="1500">D5</div>
+        <div class="seat" data-price="1500">D6</div>
+        <div class="seat" data-price="1500">D7</div>
+        <div class="seat" data-price="1500">D8</div>
+        <div class="seat" data-price="1500">D9</div>
+        <div class="seat" data-price="1500">D10</div>
+      </div>
+    </div>
+
+    <!-- Seat Legend -->
+    <div class="legend">
+      <div class="legend-item"><div class="seat static-available"></div><span>Available Seat</span></div>
+      <div class="legend-item"><div class="seat static-selected"></div><span>Selected Seat</span></div>
+      <div class="legend-item"><div class="seat static-unavailable"></div><span>Unavailable Seat</span></div>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="summary">
+      <p><span id="count">0</span> seat(s) selected</p>
+      <p>Total: LKR <span id="total">0</span></p>
+      <br>
+      <button class="btn">Proceed</button>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="footer">
+    <div class="legal">
+      <p>&copy; 2024 Cineplex Movies. All rights reserved.</p>
+    </div>
+    <div class="designed-by">
+      <p>Designed by Chatura Dissanayake | consultchatura@gmail.com</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
