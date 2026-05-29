@@ -7,17 +7,45 @@ app = Flask(__name__)
 # Permite comunicação entre frontend e backend
 CORS(app)
 
-# Lista inicial de assentos
-assentos = [
-    {"codigo": "A1", "preco": 20.0, "status": "DISPONIVEL"},
-    {"codigo": "A2", "preco": 20.0, "status": "DISPONIVEL"},
-    {"codigo": "A3", "preco": 20.0, "status": "RESERVADO"},
-    {"codigo": "A4", "preco": 20.0, "status": "DISPONIVEL"},
-    {"codigo": "B1", "preco": 25.0, "status": "DISPONIVEL"},
-    {"codigo": "B2", "preco": 25.0, "status": "RESERVADO"},
-    {"codigo": "B3", "preco": 25.0, "status": "DISPONIVEL"},
-    {"codigo": "B4", "preco": 25.0, "status": "DISPONIVEL"}
-]
+# Lista que armazenará todos os assentos
+assentos = []
+
+# Fileira A: 10 assentos
+for i in range(1, 11):
+    assentos.append({
+        "codigo": f"A{i}",
+        "preco": 800,
+        "status": "DISPONIVEL"
+    })
+
+# Fileira B: 12 assentos
+for i in range(1, 13):
+    assentos.append({
+        "codigo": f"B{i}",
+        "preco": 1200,
+        "status": "DISPONIVEL"
+    })
+
+# Fileira C: 12 assentos
+for i in range(1, 13):
+    assentos.append({
+        "codigo": f"C{i}",
+        "preco": 1200,
+        "status": "DISPONIVEL"
+    })
+
+# Fileira D: 10 assentos
+for i in range(1, 11):
+    assentos.append({
+        "codigo": f"D{i}",
+        "preco": 1500,
+        "status": "DISPONIVEL"
+    })
+
+# Alguns assentos começam reservados para teste
+assentos[2]["status"] = "RESERVADO"
+assentos[5]["status"] = "RESERVADO"
+assentos[14]["status"] = "RESERVADO"
 
 # Endpoint para listar os assentos
 @app.route("/api/assentos", methods=["GET"])
