@@ -1,6 +1,6 @@
 # Cinema Seat Reservation System
 
-Sistema distribuído de reserva de assentos de cinema desenvolvido para a disciplina de Sistemas Distribuídos.
+Sistema REST de reserva de assentos de cinema desenvolvido para a disciplina de Sistemas Distribuídos.
 
 ## Tecnologias utilizadas
 
@@ -36,8 +36,8 @@ Projeto original: https://github.com/chaturadissanayake/cinema-seat-selector
 
 O sistema original forneceu a interface gráfica para seleção de assentos. Para atender aos requisitos da disciplina de Sistemas Distribuídos, foram realizadas adaptações e extensões, incluindo:
 
-- Implementação de uma arquitetura cliente-servidor;
-- Desenvolvimento de uma API REST utilizando Python e Flask;
-- Integração entre cliente e servidor por meio de requisições HTTP;
-- Implementação da funcionalidade de reserva de assentos;
-- Gerenciamento centralizado da disponibilidade dos assentos.
+- [ ] Implementação de uma arquitetura cliente-servidor;
+- [ ] Desenvolvimento de uma API REST utilizando Python e Flask;
+- [ ] Integração entre cliente e servidor por meio de requisições HTTP;
+- [ ] Implementação da funcionalidade de reserva de assentos;
+- [ ] Gerenciamento centralizado da disponibilidade dos assentos.
