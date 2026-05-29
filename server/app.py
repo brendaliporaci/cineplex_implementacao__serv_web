@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import json
 
 # Cria a aplicação Flask
 app = Flask(__name__)
@@ -14,7 +15,7 @@ assentos = []
 for i in range(1, 11):
     assentos.append({
         "codigo": f"A{i}",
-        "preco": 800,
+        "preco": 8.50,
         "status": "DISPONIVEL"
     })
 
@@ -22,7 +23,7 @@ for i in range(1, 11):
 for i in range(1, 13):
     assentos.append({
         "codigo": f"B{i}",
-        "preco": 1200,
+        "preco": 12.00,
         "status": "DISPONIVEL"
     })
 
@@ -30,7 +31,7 @@ for i in range(1, 13):
 for i in range(1, 13):
     assentos.append({
         "codigo": f"C{i}",
-        "preco": 1200,
+        "preco": 12.00,
         "status": "DISPONIVEL"
     })
 
@@ -38,18 +39,21 @@ for i in range(1, 13):
 for i in range(1, 11):
     assentos.append({
         "codigo": f"D{i}",
-        "preco": 1500,
+        "preco": 15.00,
         "status": "DISPONIVEL"
     })
 
 # Alguns assentos começam reservados para teste
-assentos[2]["status"] = "RESERVADO"
+'''assentos[2]["status"] = "RESERVADO"
 assentos[5]["status"] = "RESERVADO"
 assentos[14]["status"] = "RESERVADO"
+'''
 
 # Endpoint para listar os assentos
 @app.route("/api/assentos", methods=["GET"])
 def listar_assentos():
+    with open('Data/seats.json', 'w') as file:
+        json.dump(assentos, file, sort_keys=True, indent=4, ensure_ascii=False)
     return jsonify(assentos)
 
 # Endpoint para reservar assentos
