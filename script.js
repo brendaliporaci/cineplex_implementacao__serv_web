@@ -5,7 +5,7 @@ const total = document.getElementById('total');
 
 // Busca os assentos diretamente da API Flask
 async function carregarAssentos() {
-  const resposta = await fetch('http://localhost:5000/api/assentos');
+  const resposta = await fetch('http://localhost:5000/api/assentos'); //TODO vamos precisar trocar isso pra uma variavel com o IP onde o servidor ta rodando
   const assentos = await resposta.json();
 
   const elementosAssentos = document.querySelectorAll('.seat');
