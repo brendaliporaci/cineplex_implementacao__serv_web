@@ -1,0 +1,162 @@
+[
+    {
+        "codigo": "A1",
+        "preco": 8.5,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "A2",
+        "preco": 8.5,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "A3",
+        "preco": 8.5,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "A4",
+        "preco": 8.5,
+        "status": "RESERVADO"
+    },
+    {
+        "codigo": "A5",
+        "preco": 8.5,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "A6",
+        "preco": 8.5,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "B1",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "B2",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "B3",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "B4",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "B5",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "B6",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "B7",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "B8",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "B9",
+        "preco": 12.0,
+        "status": "RESERVADO"
+    },
+    {
+        "codigo": "B10",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "C1",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "C2",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "C3",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "C4",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "C5",
+        "preco": 12.0,
+        "status": "RESERVADO"
+    },
+    {
+        "codigo": "C6",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "C7",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "C8",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "C9",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "C10",
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "D1",
+        "preco": 15.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "D2",
+        "preco": 15.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "D3",
+        "preco": 15.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "D4",
+        "preco": 15.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "D5",
+        "preco": 15.0,
+        "status": "DISPONIVEL"
+    },
+    {
+        "codigo": "D6",
+        "preco": 15.0,
+        "status": "DISPONIVEL"
+    }
+]

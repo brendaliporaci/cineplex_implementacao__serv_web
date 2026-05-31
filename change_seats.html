@@ -17,10 +17,11 @@
     }
 
     html, body {
-      height: 100%;
+      height: 100%;  
       font-family: "Huninn", sans-serif;
       font-weight: 400;
       font-style: normal;
+
     }
 
     body {
@@ -31,6 +32,27 @@
       position: relative;
     }
 
+    select {
+      margin: 20px;
+      padding: 5px;
+      width: 200px;
+      text-align: center;
+      font-size: 18px;
+      font-family: "Huninn", sans-serif;
+      font-weight: 400;
+      background-color: #ececec;
+      border-radius: 5px;
+      border: 0;
+    }
+
+    .botao-confirma {
+      padding: 5px 10px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      border-radius: 5px;
+      border: 0;
+    }
+
     /* Background Image */
     .background {
       position: fixed;
@@ -39,7 +61,8 @@
       width: 100%;
       height: 100%;
       background-image: url('Assets/krists-luhaers-AtPWnYNDJnM-unsplash.jpg');
-      background-size: cover;
+      /*background-size:contain;*/
+      background-repeat: repeat-y;
       background-position: center;
       filter: blur(8px); /* Blurred effect */
       z-index: -1; /* Ensures it stays behind the content */
@@ -47,7 +70,9 @@
 
     /* Container styling */
     .container {
-      max-width: 800px;
+      /*max-width: 800px;*/
+      width: fit-content;
+      height: fit-content;
       margin: 50px auto;
       background-color: rgba(0, 0, 0, 0.9); /* Darker transparency for background visibility */
       padding: 20px;
@@ -74,6 +99,20 @@
       margin: 20px 0;
       border-radius: 5px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .background-movies {
+        background-color: #fff;
+        text-align: center;
+        width: fit-content;
+        height: fit-content;
+        /*line-height: 50px;*/
+        font-size: 24px;
+        font-weight: 600; /* Changed to medium font weight */
+        color: #000;
+        margin: 20px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
 
     .seat-grid {
@@ -184,113 +223,65 @@
     }
   </style>
 </head>
-<body>
+<body style="margin: 30px; height: fit-content;">
 
   <!-- Background Image -->
-  <div class="background"></div>
+<div class="background"></div>
 
   <!-- Main Content Container -->
-  <div class="container">
+<div class="container">
     <h1>Cineplex Movies</h1>
 
     <!-- Screen Section -->
-    <div class="screen">
-      <span>TELA</span>
+    <div class="background-movies" style="padding-left: 20px;">
+        <div class="column"> <!--lista filmes -->
+            <div class="row">
+                <form id="escolheSala" action="" style="padding-right: 30px;">
+                  <label for="salas">Selecione a sala que deseja alterar:</label>
+                  <br>
+                  <Select name="salas" id="salas">
+                    <option value="1">Sala 1</option>
+                    <option value="2">Sala 2</option>
+                    <option value="3">Sala 3</option>
+                  </Select>
+                  <button class="botao-confirma" type="submit">Confirma</button>
+                </form>
+            </div>
+            <div class="row">
+              <div id="resultado">
+
+              </div>
+            </div>
+            <div class="row">
+                <div class="summary" style="margin-bottom: 30px;">
+                    <button class="btn" type="">
+                      <a href="teste_salas.html" style="text-decoration: none; color: #000;">
+                        Voltar
+                      </a>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+              <div id="alteraAssentos">
+
+              </div>
+            </div>
+        </div>
     </div>
-    
-    <!-- Seat Layout -->
-    <div class="seat-grid">
-      <!-- Front row (10 seats) -->
-      <div class="row">
-        <div class="seat" data-price="800">A1</div>
-        <div class="seat" data-price="800">A2</div>
-        <div class="seat" data-price="800">A3</div>
-        <div class="seat" data-price="800">A4</div>
-        <div class="seat" data-price="800">A5</div>
-        <div class="seat" data-price="800">A6</div>
-        <div class="seat" data-price="800">A7</div>
-        <div class="seat" data-price="800">A8</div>
-        <div class="seat" data-price="800">A9</div>
-        <div class="seat" data-price="800">A10</div>
-      </div>
+</div>
 
-      <!-- Middle section (12 seats per row) -->
-      <div class="row">
-        <div class="seat" data-price="1200">B1</div>
-        <div class="seat" data-price="1200">B2</div>
-        <div class="seat" data-price="1200">B3</div>
-        <div class="seat" data-price="1200">B4</div>
-        <div class="seat" data-price="1200">B5</div>
-        <div class="seat" data-price="1200">B6</div>
-        <div class="seat" data-price="1200">B7</div>
-        <div class="seat" data-price="1200">B8</div>
-        <div class="seat" data-price="1200">B9</div>
-        <div class="seat" data-price="1200">B10</div>
-        <div class="seat" data-price="1200">B11</div>
-        <div class="seat" data-price="1200">B12</div>
-      </div>
 
-      <!-- Another row of 12 seats -->
-      <div class="row">
-        <div class="seat" data-price="1200">C1</div>
-        <div class="seat" data-price="1200">C2</div>
-        <div class="seat" data-price="1200">C3</div>
-        <div class="seat" data-price="1200">C4</div>
-        <div class="seat" data-price="1200">C5</div>
-        <div class="seat" data-price="1200">C6</div>
-        <div class="seat" data-price="1200">C7</div>
-        <div class="seat" data-price="1200">C8</div>
-        <div class="seat" data-price="1200">C9</div>
-        <div class="seat" data-price="1200">C10</div>
-        <div class="seat" data-price="1200">C11</div>
-        <div class="seat" data-price="1200">C12</div>
-      </div>
-
-      <!-- Back rows (10 seats) -->
-      <div class="row">
-        <div class="seat" data-price="1500">D1</div>
-        <div class="seat" data-price="1500">D2</div>
-        <div class="seat" data-price="1500">D3</div>
-        <div class="seat" data-price="1500">D4</div>
-        <div class="seat" data-price="1500">D5</div>
-        <div class="seat" data-price="1500">D6</div>
-        <div class="seat" data-price="1500">D7</div>
-        <div class="seat" data-price="1500">D8</div>
-        <div class="seat" data-price="1500">D9</div>
-        <div class="seat" data-price="1500">D10</div>
-      </div>
-    </div>
-
-    <!-- Seat Legend -->
-    <div class="legend">
-      <div class="legend-item"><div class="seat static-available"></div><span>Assento disponível
-</span></div>
-      <div class="legend-item"><div class="seat static-selected"></div><span>Assento selecionado
-</span></div>
-      <div class="legend-item"><div class="seat static-unavailable"></div><span>Assento indisponível
-</span></div>
-    </div>
-
-    <!-- Summary Section -->
-    <div class="summary">
-      <p><span id="count">0</span> assento(s) selecionado(s)</p>
-      <p>Total: R$ <span id="total">0</span></p>
-      <br>
-      <!-- Botão responsável por enviar a reserva para a API -->
-      <button class="btn" id="reservar">Reservar Assentos</button>
-    </div>
-  </div>
 
   <!-- Footer Section -->
-  <div class="footer">
+<div class="footer">
     <div class="legal">
       <p>&copy; 2024 Cineplex Movies. All rights reserved.</p>
     </div>
     <div class="designed-by">
       <p>Designed by Chatura Dissanayake | consultchatura@gmail.com</p>
     </div>
-  </div>
+</div>
 
-  <script src="script.js"></script>
+    <script src="scriptSeats.js"></script>
 </body>
 </html>

@@ -76,6 +76,68 @@ def reservar():
         "mensagem": "Reserva realizada com sucesso"
     })
 
+@app.route("/api/get_list", methods=["GET"])
+def get_dictionary():
+    num = request.args.get('num')
+    url = f'Data/AssentosPorSala/seats_{num}.json'
+    
+    # CORREÇÃO: usar a variável url, não a string "url"
+    with open(url, "r") as file:  
+        seats = json.load(file)
+
+    html = f"""
+    <div class="seat-grid">
+        <div class="row" style="padding-right: 20px; font-size: 18px">
+    """
+    for seat in seats:
+        if seat["codigo"].startswith("A"):
+            position = f"""
+            <div class="seat" data-price="{seat["preco"]}">{seat["codigo"]}</div>
+            """
+            html += position
+    html += f"""
+        </div>
+        <div class="row" style="padding-right: 20px; font-size: 18px">
+    """
+
+    for seat in seats:
+        if seat["codigo"].startswith("B"):
+            position = f"""
+            <div class="seat" data-price="{seat["preco"]}">{seat["codigo"]}</div>
+            """
+            html += position
+    html += f"""
+        </div>
+        <div class="row" style="padding-right: 20px; font-size: 18px">
+    """
+
+    for seat in seats:
+        if seat["codigo"].startswith("C"):
+            position = f"""
+            <div class="seat" data-price="{seat["preco"]}">{seat["codigo"]}</div>
+            """
+            html += position
+    html += f"""
+        </div>
+        <div class="row" style="padding-right: 20px; font-size: 18px">
+    """
+
+    for seat in seats:
+        if seat["codigo"].startswith("D"):
+            position = f"""
+            <div class="seat" data-price="{seat["preco"]}">{seat["codigo"]}</div>
+            """
+            html += position
+
+
+
+    html += f"""
+        </div>
+    </div>"""
+    return html
+
+
+
 # Inicia o servidor
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
