@@ -9,7 +9,8 @@ app = Flask(__name__)
 CORS(app)
 
 # Lista que armazenará todos os assentos
-assentos = []
+assentos_base = []
+assentos = [[],[],[]]
 
 # Fileira A: 10 assentos
 for i in range(1, 11):
@@ -49,11 +50,55 @@ assentos[5]["status"] = "RESERVADO"
 assentos[14]["status"] = "RESERVADO"
 '''
 
+def conta_assentos(num):
+    sala = assentos[int(num)-1]
+    conta_a = 0
+    conta_b = 0
+    conta_c = 0
+    conta_d = 0
+
+    for seat in sala:
+        if seat['codigo'].startswith('A'):
+            conta_a += 1
+        elif seat['codigo'].startswith('B'):
+            conta_b += 1
+        elif seat['codigo'].startswith('C'):
+            conta_c += 1
+        else:
+            conta_d += 1
+    
+    contagem = [conta_a, conta_b, conta_c, conta_d]
+    return contagem
+
+def descobre_menor(contagem):
+    menor = 0
+    if contagem[0] <= contagem[1]:
+        if contagem[0] <= contagem[2]:
+            if contagem[0] <= contagem[3]:
+                menor = 0
+            else:
+                menor = 3
+        elif contagem[2] <= contagem [3]:
+            menor = 2
+        else:
+            menor = 3
+    elif contagem[1] <= contagem[2]:
+        if contagem[1] <= contagem[3]:
+            menor = 1
+        else:
+            menor = 3
+    elif contagem[2] <= contagem[3]:
+        menor = 2
+    else:
+        menor = 3
+    
+    return menor
+
 # Endpoint para listar os assentos
 @app.route("/api/assentos", methods=["GET"])
 def listar_assentos():
     with open('Data/seats.json', 'w') as file:
-        json.dump(assentos, file, sort_keys=True, indent=4, ensure_ascii=False)
+        json.dump(assentos_base, file, sort_keys=True, indent=4, ensure_ascii=False)
     return jsonify(assentos)
 
 # Endpoint para reservar assentos
@@ -63,7 +108,7 @@ def reservar():
     codigos = dados.get("assentos", [])
 
     for codigo in codigos:
-        for assento in assentos:
+        for assento in assentos_base:
             if assento["codigo"] == codigo:
                 if assento["status"] == "RESERVADO":
                     return jsonify({
@@ -81,7 +126,6 @@ def get_dictionary():
     num = request.args.get('num')
     url = f'Data/AssentosPorSala/seats_{num}.json'
     
-    # CORREÇÃO: usar a variável url, não a string "url"
     with open(url, "r") as file:  
         seats = json.load(file)
 
@@ -129,13 +173,47 @@ def get_dictionary():
             """
             html += position
 
-
-
     html += f"""
         </div>
     </div>"""
-    return html
+    assentos[int(num)-1] = seats
+    resposta = [html, seats]
+    return resposta
 
+@app.route("/api/add_seat", methods=["POST"])
+def add_seat():
+    num = request.args.get('num')
+    url = f'Data/AssentosPorSala/seats_{num}.json'
+    
+    with open(url, "r") as file:  
+        assentos[int(num)-1] = json.load(file)
+    
+    
+    contagem = conta_assentos(num)
+    menor = descobre_menor(contagem)
+    carreira = ''
+    
+    if menor == 0:
+        carreira = 'A'
+    elif menor == 1:
+        carreira = 'B'
+    elif menor == 2:
+        carreira = 'C'
+    else:
+        carreira = 'D'
+
+    posicao = contagem[menor] + 1
+    novo = {
+        "codigo": carreira+ str(posicao),
+        "preco": 12.0,
+        "status": "DISPONIVEL"
+    }
+    #print(f"Novo:\n{novo}")
+    assentos[int(num)-1].append(novo)
+    print(assentos)
+    with open(f'Data/AssentosPorSala/seats_{num}.json', 'w') as file:
+        json.dump(assentos[int(num)-1], file, sort_keys=True, indent=4, ensure_ascii=False)
+    return assentos[int(num)-1]
 
 
 # Inicia o servidor

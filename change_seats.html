@@ -35,7 +35,7 @@
     select {
       margin: 20px;
       padding: 5px;
-      width: 200px;
+      width: 180px;
       text-align: center;
       font-size: 18px;
       font-family: "Huninn", sans-serif;
@@ -236,7 +236,7 @@
     <div class="background-movies" style="padding-left: 20px;">
         <div class="column"> <!--lista filmes -->
             <div class="row">
-                <form id="escolheSala" action="" style="padding-right: 30px;">
+                <form id="escolheSala" action="" style="padding-right: 30px; padding-top: 20px;">
                   <label for="salas">Selecione a sala que deseja alterar:</label>
                   <br>
                   <Select name="salas" id="salas">
@@ -251,6 +251,14 @@
               <div id="resultado">
 
               </div>
+            </div>
+            <div class="row">
+              <button type="button" id="botaoTira" style="border: 0; border-radius: 5px; padding: 10px 15px; font-weight: 900; margin-right: 30px;">
+                -
+              </button>
+              <button type="button" id="botaoSoma" style="border: 0; border-radius: 5px; padding: 10px 15px; font-weight: 900;">
+                +
+              </button>
             </div>
             <div class="row">
                 <div class="summary" style="margin-bottom: 30px;">
