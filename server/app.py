@@ -57,7 +57,7 @@ def listar_assentos():
     return jsonify(assentos)
 
 # Endpoint para reservar assentos
-@app.route("/api/reservas", methods=["PUT"])
+@app.route("/api/reservas", methods=["POST"])
 def reservar():
     dados = request.get_json()
     codigos = dados.get("assentos", [])
