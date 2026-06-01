@@ -94,6 +94,30 @@ def descobre_menor(contagem):
     
     return menor
 
+def descobre_maior(contagem):
+    maior = 0
+    if contagem[0] >= contagem[1]:
+        if contagem[0] >= contagem[2]:
+            if contagem[0] >= contagem[3]:
+                maior = 0
+            else:
+                maior = 3
+        elif contagem[2] >= contagem [3]:
+            maior = 2
+        else:
+            maior = 3
+    elif contagem[1] >= contagem[2]:
+        if contagem[1] >= contagem[3]:
+            maior = 1
+        else:
+            maior = 3
+    elif contagem[2] >= contagem[3]:
+        maior = 2
+    else:
+        maior = 3
+    
+    return maior
+
 # Endpoint para listar os assentos
 @app.route("/api/assentos", methods=["GET"])
 def listar_assentos():
@@ -210,11 +234,39 @@ def add_seat():
     }
     #print(f"Novo:\n{novo}")
     assentos[int(num)-1].append(novo)
-    print(assentos)
+    
     with open(f'Data/AssentosPorSala/seats_{num}.json', 'w') as file:
         json.dump(assentos[int(num)-1], file, sort_keys=True, indent=4, ensure_ascii=False)
     return assentos[int(num)-1]
 
+@app.route("/api/del_seat", methods=["DELETE"])
+def del_seat():
+    num = request.args.get('num')
+    url = f'Data/AssentosPorSala/seats_{num}.json'
+    
+    with open(url, "r") as file:  
+        assentos[int(num)-1] = json.load(file)
+    
+    
+    contagem = conta_assentos(num)
+    maior = descobre_maior(contagem)
+    carreira = ''
+    
+    if maior == 0:
+        carreira = 'A'
+    elif maior == 1:
+        carreira = 'B'
+    elif maior == 2:
+        carreira = 'C'
+    else:
+        carreira = 'D'
+
+    posicao = contagem[maior]
+    assentos[int(num)-1] = [s for s in assentos[int(num)-1] if s.get('codigo') != carreira+str(posicao)]
+
+    with open(f'Data/AssentosPorSala/seats_{num}.json', 'w') as file:
+        json.dump(assentos[int(num)-1], file, sort_keys=True, indent=4, ensure_ascii=False)
+    return assentos[int(num)-1]
 
 # Inicia o servidor
 if __name__ == "__main__":

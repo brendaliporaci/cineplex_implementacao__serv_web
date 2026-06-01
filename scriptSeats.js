@@ -51,3 +51,23 @@ botaoSoma.addEventListener('click', async(event)=>{
         console.error('Erro:', error);
     }
 });
+
+botaoTira.addEventListener('click', async(event)=>{
+    const sala = parseInt(document.getElementById('salas').value)
+
+    try {
+        const resposta1 = await fetch(`http://localhost:5000/api/del_seat?num=${sala}`, {
+            method: 'DELETE'
+        });
+        const resposta2 = await fetch(`http://localhost:5000/api/get_list?num=${sala}`);
+        const dados = await resposta2.json();
+        html = dados[0]
+        console.log(await resposta1.json())
+
+        LoadRooms(html)
+
+
+    } catch (error) {
+        console.error('Erro:', error);
+    }
+});
