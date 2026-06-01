@@ -14,7 +14,7 @@ assentos = [[],[],[]]
 
 # Fileira A: 10 assentos
 for i in range(1, 11):
-    assentos.append({
+    assentos_base.append({
         "codigo": f"A{i}",
         "preco": 8.50,
         "status": "DISPONIVEL"
@@ -22,7 +22,7 @@ for i in range(1, 11):
 
 # Fileira B: 12 assentos
 for i in range(1, 13):
-    assentos.append({
+    assentos_base.append({
         "codigo": f"B{i}",
         "preco": 12.00,
         "status": "DISPONIVEL"
@@ -30,7 +30,7 @@ for i in range(1, 13):
 
 # Fileira C: 12 assentos
 for i in range(1, 13):
-    assentos.append({
+    assentos_base.append({
         "codigo": f"C{i}",
         "preco": 12.00,
         "status": "DISPONIVEL"
@@ -38,7 +38,7 @@ for i in range(1, 13):
 
 # Fileira D: 10 assentos
 for i in range(1, 11):
-    assentos.append({
+    assentos_base.append({
         "codigo": f"D{i}",
         "preco": 15.00,
         "status": "DISPONIVEL"
@@ -123,7 +123,7 @@ def descobre_maior(contagem):
 def listar_assentos():
     with open('Data/seats.json', 'w') as file:
         json.dump(assentos_base, file, sort_keys=True, indent=4, ensure_ascii=False)
-    return jsonify(assentos)
+    return jsonify(assentos_base)
 
 # Endpoint para reservar assentos
 @app.route("/api/reservas", methods=["POST"])
@@ -234,7 +234,7 @@ def add_seat():
     }
     #print(f"Novo:\n{novo}")
     assentos[int(num)-1].append(novo)
-    
+
     with open(f'Data/AssentosPorSala/seats_{num}.json', 'w') as file:
         json.dump(assentos[int(num)-1], file, sort_keys=True, indent=4, ensure_ascii=False)
     return assentos[int(num)-1]

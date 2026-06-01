@@ -64,6 +64,7 @@ botaoReservar.addEventListener('click', async () => {
   const assentos = Array.from(selecionados).map(seat =>
     seat.getAttribute('data-codigo')
   );
+  console.log(assentos)
 
   if (assentos.length === 0) {
     alert('Selecione pelo menos um assento');

@@ -37,7 +37,7 @@
     {
         "codigo": "A8",
         "preco": 8.5,
-        "status": "RESERVADO"
+        "status": "DISPONIVEL"
     },
     {
         "codigo": "A9",
@@ -87,7 +87,7 @@
     {
         "codigo": "B8",
         "preco": 12.0,
-        "status": "RESERVADO"
+        "status": "DISPONIVEL"
     },
     {
         "codigo": "B9",
@@ -142,7 +142,7 @@
     {
         "codigo": "C7",
         "preco": 12.0,
-        "status": "RESERVADO"
+        "status": "DISPONIVEL"
     },
     {
         "codigo": "C8",
@@ -177,7 +177,7 @@
     {
         "codigo": "D2",
         "preco": 15.0,
-        "status": "DISPONIVEL"
+        "status": "RESERVADO"
     },
     {
         "codigo": "D3",
